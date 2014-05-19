@@ -1,4 +1,5 @@
 var INTERVAL = 1000;
+//1000mm秒＝1秒
 var DEFAULT_MESSAGE = "終了";
 //関数default_messageは終了	
 var alarm = {
@@ -9,17 +10,20 @@ var alarm = {
 var formatCounterAsString = function(){
 		return "あと" + alarm.duration + "秒";
 };
-//formatcounerassting関数はalarm.durationを　return=計算を返す
+//formatcounerassting関数はあと何（alarm.durationの値）秒を表示する
 
 var updateCounter = function(){
 		alarm.output.textContent = formatCounterAsString();
 };
+//formatcounerassting関数を呼び出す
 
 var showAlarmMessage = function(){
 		var message = DEFAULT_MESSAGE;
+		//関数default_messageを呼び出す
 		if(alarm.message.length > 0){
 				message = alarm.message;
 		}
+		//もし、アラートメッセージの値が入力されていたら、alarm.messageを実行し、メッセージの関数へ			
 		if(Notification.permission == "granted"){
 				var notification = new Notification(message);
 		}
@@ -32,7 +36,7 @@ var update = function(){
 		if(isReadyToCountdown()){
 				updateCounter();
 				window.setTimeout(update, INTERVAL);
-				//update関数をINTERVAL(1秒)ごとに呼び出す
+				//updatecounter関数をINTERVAL(1秒)ごとに呼び出し、1ずつalarm.durationの値を減らす
 		}else{
 				showAlarmMessage();
 		}//falseならshowalrmmessageの関数を呼び出す
@@ -41,7 +45,7 @@ var update = function(){
 var isReadyToCountdown = function(){
 		return Number.isInteger(alarm.duration) && alarm.duration > 0;
 };
-//isReatyToCountdownの関数　実行されalarm.durationの数値が０以上の場合は
+//isReatyToCountdownの関数　実行されalarm.durationの数値が０以上の場合は実行される
 
 var setupAlarm = function(durationString, message){
 		alarm.duration = Number(durationString),
@@ -50,10 +54,13 @@ var setupAlarm = function(durationString, message){
 
 var startAlarm = function(){
 		setupAlarm(alarm.durationSelect.value, alarm.messageInput.value);
+		//タイマーの設定時間の値、アラームのメッセージのテキストの値を代入する		
 		if(isReadyToCountdown()){
+			//実行されalarm.durationの数値が０以上の場合はupdatecounterを実行する
 				updateCounter();
 				window.setTimeout(update, INTERVAL);
 		}
+		//1秒ずつupdateの関数を呼び出す
 };
 //isReadyToCountdown関数を呼び出す、trueならupdateCounter関数を呼び出す、trueならupdate関数をINTERVAL(1秒)ごとに呼び出す
 //
