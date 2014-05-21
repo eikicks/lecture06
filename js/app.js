@@ -1,6 +1,5 @@
 var INTERVAL = 1000;
 var DEFAULT_MESSAGE = "終了";
-//関数default_messageは終了	
 var alarm = {
 		duration: -1,
 		qtime: -1,
@@ -10,7 +9,6 @@ var alarm = {
 var formatCounterAsString = function(){
 		return "あと" + alarm.duration + "秒";
 };
-//formatcounerassting関数はalarm.durationを　return=計算を返す
 
 var formatCounterAsStringQA = function(){
 		return "あと" + alarm.qtime + "秒";
@@ -25,27 +23,16 @@ var updateCounter = function(){
 		
 		if(remainingSec == ringAlarm){
 		   var notification = new Notification(QAmessage);
-/* 			window.alert(QAmessage); */
 		}
-
 };
 
 var updateCounterQA = function(){
 		alarm.output.textContent = formatCounterAsStringQA();
 		console.log(alarm.qtime);
-		
-		var QAmessage = "質疑応答時間は残り" + alarm.duration + "秒です";
-		var remainingSec = Number(alarm.duration);
-		var ringAlarm = Number(alarm.message);
-		
-		if(remainingSec == ringAlarm){
-		   var notification = new Notification(QAmessage);
-/* 			window.alert(QAmessage); */
-		}
 };
 
 var showAlarmMessage = function(){
-		var message = DEFAULT_MESSAGE;
+		var message = "プレゼン時間は終了です";
 
 		if(Notification.permission == "granted"){
 			var notification = new Notification(message);
@@ -55,7 +42,7 @@ var showAlarmMessage = function(){
 };
 
 var showAlarmMessageQA = function(){
-		var message = DEFAULT_MESSAGE;
+		var message = "質疑応答時間は終了です";
 
 		if(Notification.permission == "granted"){
 			var notification = new Notification(message);
@@ -66,32 +53,27 @@ var showAlarmMessageQA = function(){
 
 var update = function(){
 		alarm.duration = alarm.duration - 1;
-		//alarm.durationのを1引く
 		if(isReadyToCountdown()){
 				updateCounter();
 				window.setTimeout(update, INTERVAL);
-				//update関数をINTERVAL(1秒)ごとに呼び出す
 		}else{
 				showAlarmMessage();
-		}//falseならshowalrmmessageの関数を呼び出す
+		}
 };
 
 var updateQA = function(){
 		alarm.qtime = alarm.qtime - 1;
-		//alarm.durationのを1引く
 		if(isReadyToCountdownQA()){
 				updateCounterQA();
 				window.setTimeout(updateQA, INTERVAL);
-				//update関数をINTERVAL(1秒)ごとに呼び出す
 		}else{
 				showAlarmMessageQA();
-		}//falseならshowalrmmessageの関数を呼び出す
+		}
 };
 
 var isReadyToCountdown = function(){
 		return Number.isInteger(alarm.duration) && alarm.duration > 0;
 };
-//isReatyToCountdownの関数　実行されalarm.durationの数値が０以上の場合は
 
 var isReadyToCountdownQA = function(){
 		return Number.isInteger(alarm.qtime) && alarm.qtime > 0;
@@ -122,16 +104,12 @@ var startQAAlarm = function(){
 				window.setTimeout(updateQA, INTERVAL);
 		}
 };
-//isReadyToCountdown関数を呼び出す、trueならupdateCounter関数を呼び出す、trueならupdate関数をINTERVAL(1秒)ごとに呼び出す
 
 var initApp = function(){
 		alarm.durationInput = document.querySelector("#duration");
 		alarm.durationQAInput = document.querySelector("#durationQA");
-		//タイマーの設定時間(id="duration")
 		alarm.messageInput = document.querySelector("#message");
-		//入力したテキスト(id="message")
 		alarm.output = document.querySelector("#countdown");
-		//タイマーのカウントダウン(id="countdown")
 		Notification.requestPermission(function(status){
 				if(Notification.permission != status){
 						Notification.permission = status;
@@ -142,7 +120,6 @@ var initApp = function(){
 		startButton.addEventListener("click", startAlarm);
 		var startQAButton = document.querySelector("#startQA");
 		startQAButton.addEventListener("click", startQAAlarm);
-		//表示する（id="message"）をクリックするとstartAlarmの関数を呼び出す	
 };
-//関数initapp　設定する
+
 initApp();
