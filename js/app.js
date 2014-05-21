@@ -14,7 +14,7 @@ var formatCounterAsString = function(){
 var updateCounter = function(){
 		alarm.output.textContent = formatCounterAsString();
 		
-		var QAmessage = "はよプレゼンまとめて";
+		var QAmessage = "プレゼン時間は残り" + alarm.duration + "秒です";
 		var remainingSec = Number(alarm.duration);
 		var ringAlarm = Number(alarm.message);
 		
@@ -24,23 +24,10 @@ var updateCounter = function(){
 		}
 				console.log(alarm.duration);
 				console.log(ringAlarm);
-		
 };
 
 var showAlarmMessage = function(){
 		var message = DEFAULT_MESSAGE;
-				
-/*
-		var QAmessage = "プレゼンまとめて";
-		var remainingSec = Number(alarm.duration);
-		var ringAlarm = Number(alarm.message);
-		
-		if(remainingSec == ringAlarm){
-			window.alert(QAmessage);
-		}
-				console.log(alarm.duration);
-				console.log(ringAlarm);
-*/
 
 		if(Notification.permission == "granted"){
 			var notification = new Notification(message);
