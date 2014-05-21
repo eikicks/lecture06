@@ -3,6 +3,7 @@ var DEFAULT_MESSAGE = "終了";
 //関数default_messageは終了	
 var alarm = {
 		duration: -1,
+		qtime: -1,
 		message: ""
 };
 
@@ -10,6 +11,10 @@ var formatCounterAsString = function(){
 		return "あと" + alarm.duration + "秒";
 };
 //formatcounerassting関数はalarm.durationを　return=計算を返す
+
+var formatCounterAsStringQA = function(){
+		return "あと" + alarm.qtime + "秒";
+};
 
 var updateCounter = function(){
 		alarm.output.textContent = formatCounterAsString();
@@ -22,11 +27,34 @@ var updateCounter = function(){
 		   var notification = new Notification(QAmessage);
 /* 			window.alert(QAmessage); */
 		}
-				console.log(alarm.duration);
-				console.log(ringAlarm);
+
+};
+
+var updateCounterQA = function(){
+		alarm.output.textContent = formatCounterAsStringQA();
+		console.log(alarm.qtime);
+		
+		var QAmessage = "質疑応答時間は残り" + alarm.duration + "秒です";
+		var remainingSec = Number(alarm.duration);
+		var ringAlarm = Number(alarm.message);
+		
+		if(remainingSec == ringAlarm){
+		   var notification = new Notification(QAmessage);
+/* 			window.alert(QAmessage); */
+		}
 };
 
 var showAlarmMessage = function(){
+		var message = DEFAULT_MESSAGE;
+
+		if(Notification.permission == "granted"){
+			var notification = new Notification(message);
+		}
+		alarm.output.textContent = message;
+		console.log(message);
+};
+
+var showAlarmMessageQA = function(){
 		var message = DEFAULT_MESSAGE;
 
 		if(Notification.permission == "granted"){
@@ -48,10 +76,26 @@ var update = function(){
 		}//falseならshowalrmmessageの関数を呼び出す
 };
 
+var updateQA = function(){
+		alarm.qtime = alarm.qtime - 1;
+		//alarm.durationのを1引く
+		if(isReadyToCountdownQA()){
+				updateCounterQA();
+				window.setTimeout(updateQA, INTERVAL);
+				//update関数をINTERVAL(1秒)ごとに呼び出す
+		}else{
+				showAlarmMessageQA();
+		}//falseならshowalrmmessageの関数を呼び出す
+};
+
 var isReadyToCountdown = function(){
 		return Number.isInteger(alarm.duration) && alarm.duration > 0;
 };
 //isReatyToCountdownの関数　実行されalarm.durationの数値が０以上の場合は
+
+var isReadyToCountdownQA = function(){
+		return Number.isInteger(alarm.qtime) && alarm.qtime > 0;
+};
 
 var setupAlarm = function(durationString, message){
 		alarm.duration = Number(durationString),
@@ -59,7 +103,7 @@ var setupAlarm = function(durationString, message){
 };
 
 var setupQAAlarm = function(durationString, message){
-		alarm.duration = Number(durationString),
+		alarm.qtime = Number(durationString),
 		alarm.message = message;
 };
 
@@ -73,9 +117,9 @@ var startAlarm = function(){
 
 var startQAAlarm = function(){
 		setupQAAlarm(alarm.durationQAInput.value, alarm.messageInput.value);
-		if(isReadyToCountdown()){
-				updateCounter();
-				window.setTimeout(update, INTERVAL);
+		if(isReadyToCountdownQA()){
+				updateCounterQA();
+				window.setTimeout(updateQA, INTERVAL);
 		}
 };
 //isReadyToCountdown関数を呼び出す、trueならupdateCounter関数を呼び出す、trueならupdate関数をINTERVAL(1秒)ごとに呼び出す
