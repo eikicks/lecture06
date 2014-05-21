@@ -9,24 +9,22 @@
   <body>
     <div id="control">
       <form>
-        <select id="duration">
-          <option value="5">5秒後</option>
-          <option value="10">10秒後</option>
-          <option value="30">30秒後</option>
-          <option value="60">60秒後</option>
-          <option value="90">90秒後</option>
-          <option value="180">3分後</option>
-          <option value="900">15分後</option>
-          <option value="1800">30分後</option>
-        </select>
-        に
+      タイマー
+      <input type="text" id="duration">
+        秒　　
+      <br>予鈴　　
         <input type="text" id="message">
-        と
-        <button type="button" id="start">表示する</button>
+        秒
+        <br>
+        <button type="button" id="start">スタート</button>
+        <br>質疑応答
+        <input type="text" id="durationQA">
+        秒
+        <button type="button" id="startQA">スタート</button>
       </form>
     </div>
     <div id="countdown">
-      アラームをセットしてください。
+          アラームをセットしてください。
     </div>
     <script src="js/app.js"></script>
   </body>
