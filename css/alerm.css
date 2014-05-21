@@ -2,30 +2,29 @@
     padding: .5em 1em;
 }
 #countdown{
-        font-size: 70px;
-        top: 65%;
+        font-size: 55px;
+        top: 100%;
         text-align: center;
         width: 100%;
-        position: relative; 
-  　　　top: 100px;
+        position:top: 120px;
 }
 
 #control select{
     font-size: 18px;
     padding: .5em 1em;
-    width: 10em;
+    width: 15em;
     border: solid 1px #363636;
     border-radius: 2px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, .2) inset;
-    text-align: center;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .0) inset;
+    text-align:;
 
 
 }
 
 #control input[type=text]{
-    width: 20em;
+    width: 5em;
     display: inline-block;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, .2) inset;
+    box-shadow: inset;
     text-align: center;
 }
 
