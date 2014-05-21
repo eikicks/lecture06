@@ -1,44 +1,43 @@
 body{
 	font-family:'Lucida Grande','Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
 	font-size: 18px;
-	line-height: 1.7;
+	line-height: 1.5;
 
-	color: #363636;
-	pading: 0;
+	color: #87CEFA;
 	margin: 0;
+
 }
 article{
-	width: 50em;
+	width: 20em;
 	margin: auto;
 }
 button{
 	font-size: 80%;
 	color: #fefefe;
-	background-color: #546573;
-	padding: .5em 1em;
-	border: solid 1px #5c6d7b;
-	border-radius: 2px;
+	background-color: #8ADFF9;
+	padding: .4em 1em;
+	border: none 1px #57D0FC;
+	border-radius:3px;
 	display: inline-block;
 }
 button:hover{
-	background-color: #5c6d7b;
-	border: solid 1px #5c6d7b;
-	transition-property: background-color;
-	transition-duration: 1s;
+	background-color: #7CCBF6;
+	border: solid 1px #D5ECF8; 
+	
 }
 button:active{
-	box-shadow: inset #243543 1px 1px 2px;
+	box-shadow: inset #C7E7FC 1px 1px 2px;
 }
 input[type=text]{
-	font-size: 18px;
-	color: #363636;
-	box-sizing: border-box;
-	width: 100%;
-	margin: .5em 0;
-	padding: .5em 1em;
-	border-radius: 2px;
-	border: solid 1px #546573;
+	font-size: 23px;
+	color: #9A9D9F;
+	width: 80%;
+	margin: .6em 0;
+	padding: .6em 2em;
+	border-radius: 1px;
+	border: solid 2px #F7FA95;
 	display: block;
+
 }
 
 .hidden{
@@ -53,7 +52,7 @@ input[type=text]{
 }
 
 .error{
-	background-color: #F26464;
+	background-color: #;
 }
 
 .warning{
