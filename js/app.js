@@ -1,6 +1,5 @@
 var INTERVAL = 1000;
 var DEFAULT_MESSAGE = "終了";
-/* var timeoutMessage = "はよプレゼンまとめてくれ"; */
 //関数default_messageは終了	
 var alarm = {
 		duration: -1,
@@ -14,17 +13,40 @@ var formatCounterAsString = function(){
 
 var updateCounter = function(){
 		alarm.output.textContent = formatCounterAsString();
+		
+		var QAmessage = "はよプレゼンまとめて";
+		var remainingSec = Number(alarm.duration);
+		var ringAlarm = Number(alarm.message);
+		
+		if(remainingSec == ringAlarm){
+		   var notification = new Notification(QAmessage);
+/* 			window.alert(QAmessage); */
+		}
+				console.log(alarm.duration);
+				console.log(ringAlarm);
+		
 };
 
 var showAlarmMessage = function(){
 		var message = DEFAULT_MESSAGE;
-		if(alarm.message.length > 0){
-				message = alarm.message;
+				
+/*
+		var QAmessage = "プレゼンまとめて";
+		var remainingSec = Number(alarm.duration);
+		var ringAlarm = Number(alarm.message);
+		
+		if(remainingSec == ringAlarm){
+			window.alert(QAmessage);
 		}
+				console.log(alarm.duration);
+				console.log(ringAlarm);
+*/
+
 		if(Notification.permission == "granted"){
-				var notification = new Notification(message);
+			var notification = new Notification(message);
 		}
 		alarm.output.textContent = message;
+		console.log(message);
 };
 
 var update = function(){
